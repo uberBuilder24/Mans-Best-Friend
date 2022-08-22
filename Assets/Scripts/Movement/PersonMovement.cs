@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class DogMovement : MonoBehaviour {
+public class PersonMovement : MonoBehaviour {
     [SerializeField] private float movementSpeed = 2.25f;
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
     private SpriteRenderer spriteRend;
     private Animator anim;
-    private float direction = 1f;
+    private float direction = 2f;
 
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
@@ -33,16 +33,16 @@ public class DogMovement : MonoBehaviour {
             anim.enabled = true;
             if (direction == 0) {
                 spriteRend.flipX = false;
-                anim.Play("Base Layer.DogBack", 0);
+                anim.Play("Base Layer.PersonBack", 0);
             } else if (direction == 1) {
                 spriteRend.flipX = false;
-                anim.Play("Base Layer.DogSide", 0);
+                anim.Play("Base Layer.PersonSide", 0);
             } else if (direction == 2) {
                 spriteRend.flipX = false;
-                anim.Play("Base Layer.DogFront", 0);
+                anim.Play("Base Layer.PersonFront", 0);
             } else if (direction == 3) {
                 spriteRend.flipX = true;
-                anim.Play("Base Layer.DogSide", 0);
+                anim.Play("Base Layer.PersonSide", 0);
             }
         } else {
             anim.enabled = false;
