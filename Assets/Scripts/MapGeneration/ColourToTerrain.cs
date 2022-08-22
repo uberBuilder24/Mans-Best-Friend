@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ColourToPrefab {
+public class ColourToTerrain {
     public Color colour;
     public GameObject prefab;
 }
