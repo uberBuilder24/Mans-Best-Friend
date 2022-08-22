@@ -13,37 +13,56 @@ public class DogMovement : MonoBehaviour {
     }
 
     void Update() {
-        float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        if (CharacterSwitcher.personEnabled == false) {
+            float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+            float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
-        if (movementY > 0.01f) {
-            direction = 0;
-        }
-        if (movementY < -0.01f) {
-            direction = 2;
-        }
-        if (movementX > 0.01f) {
-            direction = 1;
-        }
-        if (movementX < -0.01f) {
-            direction = 3;
-        }
-        
-        if (Mathf.Abs(movementX) > 0.01f || Mathf.Abs(movementY) > 0.01f) {
-            anim.enabled = true;
-            if (direction == 0) {
-                spriteRend.flipX = false;
-                anim.Play("Base Layer.DogBack", 0);
-            } else if (direction == 1) {
-                spriteRend.flipX = false;
-                anim.Play("Base Layer.DogSide", 0);
-            } else if (direction == 2) {
-                spriteRend.flipX = false;
-                anim.Play("Base Layer.DogFront", 0);
-            } else if (direction == 3) {
-                spriteRend.flipX = true;
-                anim.Play("Base Layer.DogSide", 0);
+            if (movementY > 0.01f) {
+                direction = 0;
             }
+            if (movementY < -0.01f) {
+                direction = 2;
+            }
+            if (movementX > 0.01f) {
+                direction = 1;
+            }
+            if (movementX < -0.01f) {
+                direction = 3;
+            }
+            
+            if (Mathf.Abs(movementX) > 0.01f || Mathf.Abs(movementY) > 0.01f) {
+                anim.enabled = true;
+                if (direction == 0) {
+                    spriteRend.flipX = false;
+                    anim.Play("Base Layer.DogBack", 0);
+                } else if (direction == 1) {
+                    spriteRend.flipX = false;
+                    anim.Play("Base Layer.DogSide", 0);
+                } else if (direction == 2) {
+                    spriteRend.flipX = false;
+                    anim.Play("Base Layer.DogFront", 0);
+                } else if (direction == 3) {
+                    spriteRend.flipX = true;
+                    anim.Play("Base Layer.DogSide", 0);
+                }
+            } else {
+                anim.enabled = false;
+                if (direction == 0) {
+                    spriteRend.flipX = false;
+                    spriteRend.sprite = idleSprites[1];
+                } else if (direction == 1) {
+                    spriteRend.flipX = false;
+                    spriteRend.sprite = idleSprites[2];
+                } else if (direction == 2) {
+                    spriteRend.flipX = false;
+                    spriteRend.sprite = idleSprites[0];
+                } else if (direction == 3) {
+                    spriteRend.flipX = true;
+                    spriteRend.sprite = idleSprites[2];
+                }
+            }
+            
+            transform.position += Vector3.right * movementX + Vector3.up * movementY;
         } else {
             anim.enabled = false;
             if (direction == 0) {
@@ -60,7 +79,5 @@ public class DogMovement : MonoBehaviour {
                 spriteRend.sprite = idleSprites[2];
             }
         }
-        
-        transform.position += Vector3.right * movementX + Vector3.up * movementY;
     }
 }
