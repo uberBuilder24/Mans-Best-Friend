@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3838636139183082333}
   - component: {fileID: 2850805110294244344}
+  - component: {fileID: 9098931706505955455}
   - component: {fileID: 6782112211745924744}
   m_Layer: 0
   m_Name: Bush
@@ -85,6 +86,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &9098931706505955455
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145508473477506760}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6782112211745924744
 BoxCollider2D:
   m_ObjectHideFlags: 0
