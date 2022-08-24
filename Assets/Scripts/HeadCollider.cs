@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PersonHeadCollider : MonoBehaviour {
+public class HeadCollider : MonoBehaviour {
     [SerializeField] private int triggeredLayer;
     private SpriteRenderer spriteRend;
     private int originalLayer;

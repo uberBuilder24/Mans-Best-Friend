@@ -47,37 +47,29 @@ public class PersonMovement : MonoBehaviour {
                 }
             } else {
                 anim.enabled = false;
-                if (direction == 0) {
-                    spriteRend.flipX = false;
-                    spriteRend.sprite = idleSprites[1];
-                } else if (direction == 1) {
-                    spriteRend.flipX = false;
-                    spriteRend.sprite = idleSprites[2];
-                } else if (direction == 2) {
-                    spriteRend.flipX = false;
-                    spriteRend.sprite = idleSprites[0];
-                } else if (direction == 3) {
-                    spriteRend.flipX = true;
-                    spriteRend.sprite = idleSprites[2];
-                }
+                HandleIdleSprites();
             }
             
             transform.position += Vector3.right * movementX + Vector3.up * movementY;
         } else {
             anim.enabled = false;
-            if (direction == 0) {
-                spriteRend.flipX = false;
-                spriteRend.sprite = idleSprites[1];
-            } else if (direction == 1) {
-                spriteRend.flipX = false;
-                spriteRend.sprite = idleSprites[2];
-            } else if (direction == 2) {
-                spriteRend.flipX = false;
-                spriteRend.sprite = idleSprites[0];
-            } else if (direction == 3) {
-                spriteRend.flipX = true;
-                spriteRend.sprite = idleSprites[2];
-            }
+            HandleIdleSprites();
+        }
+    }
+
+    void HandleIdleSprites() {
+        if (direction == 0) {
+            spriteRend.flipX = false;
+            spriteRend.sprite = idleSprites[1];
+        } else if (direction == 1) {
+            spriteRend.flipX = false;
+            spriteRend.sprite = idleSprites[2];
+        } else if (direction == 2) {
+            spriteRend.flipX = false;
+            spriteRend.sprite = idleSprites[0];
+        } else if (direction == 3) {
+            spriteRend.flipX = true;
+            spriteRend.sprite = idleSprites[2];
         }
     }
 }
