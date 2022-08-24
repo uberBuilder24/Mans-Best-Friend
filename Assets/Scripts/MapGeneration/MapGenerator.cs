@@ -51,7 +51,7 @@ public class MapGenerator : MonoBehaviour {
                     position.x *= 1.235f;
                 }
                 if (position.y != 0) {
-                    position.y *= 1.435f;
+                    position.y = (position.y * 1.435f) - 0.175f;
                     if (buildingMapping.prefab.name.Contains("Left") || buildingMapping.prefab.name.Contains("Right")) {
                         position.y -= 0.575f;
                     }
