@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3838636139183082333}
   - component: {fileID: 2850805110294244344}
   - component: {fileID: 9098931706505955455}
-  - component: {fileID: 6782112211745924744}
+  - component: {fileID: 2609565443666150491}
   m_Layer: 0
   m_Name: HorizontalWall
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6782112211745924744
+--- !u!61 &2609565443666150491
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,16 +120,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000010967255, y: -0.6973091}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.25, y: 1.6}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1.28, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.250001, y: 0.20538127}
+  m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
