@@ -167,24 +167,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc617fddd210854c8871dd8ea3e70bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldMap: {fileID: 2800000, guid: c9ac7842f463de748b46e78d061373d5, type: 3}
-  buildingMap: {fileID: 2800000, guid: 6e58b39101d609d45a14869813df54a1, type: 3}
   tileWidth: 64
   tileHeight: 64
+  terrainMap: {fileID: 2800000, guid: c9ac7842f463de748b46e78d061373d5, type: 3}
   terrainMappings:
   - colour: {r: 0, g: 1, b: 0, a: 1}
     prefab: {fileID: 3828849439219721595, guid: ea963af9b07a4174b9d8b17f40a4878a, type: 3}
   - colour: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
     prefab: {fileID: 5113344710333557291, guid: c76f751de6216194fa20cd8951912207, type: 3}
+  buildingMap: {fileID: 2800000, guid: 6e58b39101d609d45a14869813df54a1, type: 3}
   buildingMappings:
   - colour: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 2145508473477506760, guid: 8ac9557f9cd0d834382ea5a92e3a8149, type: 3}
   - colour: {r: 0, g: 0, b: 1, a: 1}
     prefab: {fileID: 2145508473477506760, guid: aff6dffccb71c404c8b49e73919fb33d, type: 3}
   - colour: {r: 1, g: 0, b: 0, a: 1}
-    prefab: {fileID: 2145508473477506760, guid: 9fa8209497a10a745b67b958c6517595, type: 3}
+    prefab: {fileID: 2145508473477506760, guid: 0c664f690522f854ca4439ab3043a596, type: 3}
+  detailMap: {fileID: 2800000, guid: 6207735ffe67cc842af0d968061ccd0c, type: 3}
   detailMappings:
-  - terrain: Grass
+  - colour: {r: 0, g: 1, b: 0, a: 1}
     prefab: {fileID: 2145508473477506760, guid: a6e3bf5287a60b64b8638cca84f844bd, type: 3}
 --- !u!1 &413293651
 GameObject:
@@ -443,7 +444,9 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  m_Layer: 0
+  - component: {fileID: 519420035}
+  - component: {fileID: 519420034}
+  m_Layer: 3
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -550,6 +553,83 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 2bcabc12636e33e45a4f932aab4a7c24, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 519420032}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &986081741
 GameObject:
   m_ObjectHideFlags: 0
