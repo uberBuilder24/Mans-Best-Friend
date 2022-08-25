@@ -17,8 +17,9 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField] private Texture2D detailMap;
     public ColourToPrefab[] detailMappings;
     
-    void Start() {
+    void Awake() {
         GenerateMap();
+        AstarPath.active.Scan();
     }
 
     void GenerateMap() {
