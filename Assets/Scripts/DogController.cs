@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class PersonMovement : MonoBehaviour {
+public class DogController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 2.25f;
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
     private SpriteRenderer spriteRend;
     private Animator anim;
-    private float direction = 2f;
+    private float direction = 1f;
 
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
@@ -13,7 +13,7 @@ public class PersonMovement : MonoBehaviour {
     }
 
     void Update() {
-        if (CharacterSwitcher.personEnabled == true) {
+        if (CharacterSwitcher.personEnabled == false) {
             float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
@@ -34,16 +34,16 @@ public class PersonMovement : MonoBehaviour {
                 anim.enabled = true;
                 if (direction == 0) {
                     spriteRend.flipX = false;
-                    anim.Play("Base Layer.PersonBack", 0);
+                    anim.Play("Base Layer.DogBack", 0);
                 } else if (direction == 1) {
                     spriteRend.flipX = false;
-                    anim.Play("Base Layer.PersonSide", 0);
+                    anim.Play("Base Layer.DogSide", 0);
                 } else if (direction == 2) {
                     spriteRend.flipX = false;
-                    anim.Play("Base Layer.PersonFront", 0);
+                    anim.Play("Base Layer.DogFront", 0);
                 } else if (direction == 3) {
                     spriteRend.flipX = true;
-                    anim.Play("Base Layer.PersonSide", 0);
+                    anim.Play("Base Layer.DogSide", 0);
                 }
             } else {
                 anim.enabled = false;

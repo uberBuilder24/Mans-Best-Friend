@@ -1,7 +1,7 @@
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyAI : MonoBehaviour {
+public class EnemyController : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private Transform target;
     [SerializeField] private GameObject alerted;
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour {
 
         if (IsOnScreen() && CharacterSwitcher.personEnabled == true && knowsPlayer == false) {
             alerted.SetActive(true);
-            nextFireTime = Time.time + 2.5f;
+            nextFireTime = Time.time + 1f;
             knowsPlayer = true;
             destinationSetter.target = target;
         }
@@ -70,11 +70,9 @@ public class EnemyAI : MonoBehaviour {
 
             if (Time.time >= nextFireTime && knowsPlayer) {
                 nextFireTime = Time.time + 1f / fireRate;
-
                 if (alerted.activeSelf == true) {
                     alerted.SetActive(false);
                 }
-
                 Shoot();
             }
         }
@@ -86,7 +84,20 @@ public class EnemyAI : MonoBehaviour {
         Vector3 dir = (target.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         if (angle < 0) { angle += 360; }
-        GameObject bulletClone = Instantiate(bullet, transform.position, Quaternion.Euler(0f, 0f, angle), transform);
+
+        // Set the bullet to spawn near the gun
+        Vector3 bulletSpawn = transform.position;
+        if (direction == 0) {
+            bulletSpawn = new Vector3(0.22f, 0.035f, 0f);
+        } else if (direction == 1) {
+            bulletSpawn = new Vector3(0.1f, -0.07f, 0f);
+        } else if (direction == 2) {
+            bulletSpawn = new Vector3(-0.06f, -0.08f, 0f);
+        } else if (direction == 3) {
+            bulletSpawn = new Vector3(-0.1f, -0.07f, 0f);
+        }
+
+        Instantiate(bullet, transform.position + bulletSpawn, Quaternion.Euler(0f, 0f, angle), transform);
     }
 
     bool IsOnScreen() {
@@ -99,6 +110,7 @@ public class EnemyAI : MonoBehaviour {
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90f;
         if (angle < 0) { angle += 360; }
 
+        // Point towards the person
         if (angle >= 315 || angle <= 44) {
             direction = 0;
         } else if (angle >= 225 && angle <= 314) {

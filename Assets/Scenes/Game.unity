@@ -288,9 +288,10 @@ GameObject:
   - component: {fileID: 479391504}
   - component: {fileID: 479391498}
   - component: {fileID: 479391501}
+  - component: {fileID: 479391505}
   m_Layer: 0
   m_Name: Person
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,6 +400,8 @@ MonoBehaviour:
   - {fileID: 526089326, guid: e8220c435128050418340216f8ccd8ab, type: 3}
   - {fileID: -1103653043, guid: e8220c435128050418340216f8ccd8ab, type: 3}
   - {fileID: 268097577, guid: e8220c435128050418340216f8ccd8ab, type: 3}
+  fireRate: 1
+  bullet: {fileID: 1212090735}
 --- !u!50 &479391503
 Rigidbody2D:
   serializedVersion: 4
@@ -446,6 +449,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.49}
   m_EdgeRadius: 0
+--- !u!114 &479391505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479391496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eddd8c6778f3d4398f5b4390b48ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 10
+  bulletDamage: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   person: {fileID: 479391496}
   dog: {fileID: 1545002777}
-  cursorSprite: {fileID: 0}
   virtualCam: {fileID: 986081742}
 --- !u!4 &1494787483
 Transform:
@@ -1252,9 +1268,10 @@ GameObject:
   - component: {fileID: 1545002784}
   - component: {fileID: 1545002781}
   - component: {fileID: 1545002780}
+  - component: {fileID: 1545002785}
   m_Layer: 6
   m_Name: Dog
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1410,6 +1427,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27, y: 0.22}
   m_EdgeRadius: 0
+--- !u!114 &1545002785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545002777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eddd8c6778f3d4398f5b4390b48ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 10
+  bulletDamage: 4
 --- !u!1 &2044256953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,9 +1766,10 @@ GameObject:
   - component: {fileID: 5772582951272706539}
   - component: {fileID: 5772582951272706548}
   - component: {fileID: 5772582951272706537}
+  - component: {fileID: 5772582951272706552}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1850,3 +1882,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.49}
   m_EdgeRadius: 0
+--- !u!114 &5772582951272706552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772582951272706546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eddd8c6778f3d4398f5b4390b48ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 10
+  bulletDamage: 4
