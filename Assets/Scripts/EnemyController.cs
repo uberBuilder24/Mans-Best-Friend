@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private Transform target;
     [SerializeField] private GameObject alerted;
+    [SerializeField] private Vector2 idlingDirection = new Vector2(0f, 1f);
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
@@ -26,8 +27,15 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Update() {
-        float movementX = aiPath.desiredVelocity.x * Time.deltaTime;
-        float movementY = aiPath.desiredVelocity.y * Time.deltaTime;
+        float movementX;
+        float movementY;
+        if (knowsPlayer) {
+            movementX = aiPath.desiredVelocity.x * Time.deltaTime;
+            movementY = aiPath.desiredVelocity.y * Time.deltaTime;
+        } else {
+            movementX = aiPath.maxSpeed * idlingDirection.x * Time.deltaTime;
+            movementY = aiPath.maxSpeed * idlingDirection.y * Time.deltaTime;
+        }
 
         if (movementY > 0.01f) {
             direction = 0;
@@ -78,6 +86,13 @@ public class EnemyController : MonoBehaviour {
         }
         
         transform.position += Vector3.right * movementX + Vector3.up * movementY;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        Debug.Log("Trigger Entered!");
+        if (collider.gameObject.layer == 6 && knowsPlayer == false) {
+            idlingDirection *= -1f;
+        }
     }
 
     void Shoot() {
