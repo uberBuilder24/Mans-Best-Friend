@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 20306407}
   - component: {fileID: 20306408}
   m_Layer: 0
-  m_Name: A*
+  m_Name: AI Pathfinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+uuAqapbQIAAC4FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVEtz2jAQ/iuMzoUxkBjorXUI6SEJE9rJxRdhrbEGWfLoEV7Df+9KtrFLubD+9vXtt2tfCJemgswqvdKcvSoG5PuAeJt8G3TOFzjSnZIbfoY25pMzW/ggGmI+qOUK8bFPM6oEq3n2Q+6ED44QdJLnSpdLtoNEGWsQzqkwgC6trM+WCF0G5Ih/w4VPOaE1mXnrjNYiGlzRzEBa0F3odD6KFk1wa/vwOtrJTNCyAuapd0mzeDRb4O/xocnsgJAmccgmIxrFPihTQnDTkCT2VAUREloZhyNiAOMUhw7MxqMpAgXwXWH9CP309zw3YBtNND09cY3q1XXJT1VLWlKzr8l+UeF8p7jmVdd8/c89HAd3rlX50rYdR76FLXi2/6CnjBrbk7wPP/WYB8kOVOzpVsBnAfJNrbRykqHTaudTnYHJU/d4mywpINt3eE31DnRVt4N2w+1+/QzXMPwxEbzcBu0famAjVBA8nAVo3M4vJByOxjQlEPUs/hj4TXf962ocz1wbi65mSunpbZXTPpQsg2Z+GmcTpSUEuCFdgaTCntZYxt5v8M7Xa3vneab+PWqaN7729bhLCXAXH0V3rrU63JZlCnV4BVO8Oyu4hI60d7yhTomSsj6wviZt2sbpnGa9tJ3j7N/TIpNoMou303gSQbQY0/lwNo/zOaPR4zZe0PksI+H2uMQ5qVjXRBt5cGuyKy7xztrPy2ClaRWOnWl6WPFzqXqSc5mrTaYB5Htd4UYcNDbBN5MtGUeBNmAtl2Hf5JISobI9sPRWKA2TLo9W07SrkpKKfynrkZQk4XuSEg/fbnmt4YvDwTdvi13J9S9QSwMEFAAACAgAAJif6/TCe25tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKRgZG5WZKxmZFBqoGlYaKFrrmFWZpFSqKBaZKZZaKFebJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJif664CpqltAgAALgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJif6/TCe25tAAAAeAAAAAkAJAAAAAAAAAAAAAAAugIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAByAwAAAAA=
+    dataString: UEsDBBQAAAgIAACYn+vCdgeibQIAAC8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVEtz2jAQ/iuMzoUxkBjorXUI6SEJE9rJxRdhrbEGWfLoEV7Df+9KtrFLubD+9vXtt2tfCJemgswqvdKcvSoG5PuAeJt8G3TOFzjSnZIbfoY25pMzW/ggGmI+qOUK8bFPM6oEq3n2Q+6ED44QdJLnSpdLtoNEGWsQzqkwgC6trM+WCF0G5Ih/w4VPOaE1mXnrjNYiGlzRzEBa0F3odD6KFk1wa/vwOtrJTNCyAuapd0mzeDRb4O/xocnsgJAmccgmIxrFPihTQnDTkCT2VAUREloZhyNiAOMUhw7MxqMpAgXwXWH9CP309zw3YBtNND09cY3q1XXJT1VLWlKzr8l+UeF8p7jmVdd8/c89HAd3rlX50rYdR76FLXi2/6CnjBrbk7wPP/WYB8kOVOzpVsBnAfJNrbRykqHTaudTnYHJU/d4mywpINt3eE31DnRVt4N2w+1+/QzXMPwxEbzcBu0famAjVBA8nAVo3M4vJByOxjQlEPUs/hj4TXf962ocz1wbi65mSunpbZXTPpQsg2Z+GmcTpSUEuCFdgaTCntZYxt5v8M7Xa3vneab+PWqaN7729bhLCXAXH0V3rrU63JZlCnV4BVO8Oyu4hI60d7yhTomSsj6wviZt2sbpnGa9tJ3j7N/TIpNoMou303gSQbQY0/lwNo/zOaPR4zZe0PksI+H2uMQ5qVjXRBt5cGuyKy7xztrPy2ClaRWOnWl6WPFzqfoEuczVJtMA8r0ucWMOGrvgq8mWjKNCG7CWy7BwckmJUNkeWHrrmYZRl0eradpVSUnFv5T1SEqS8EFJiYdvx7zW8MXh4Ju3xa7k+hdQSwMEFAAACAgAAJif6/TCe25tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKRgZG5WZKxmZFBqoGlYaKFrrmFWZpFSqKBaZKZZaKFebJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJif68J2B6JtAgAALwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJif6/TCe25tAAAAeAAAAAkAJAAAAAAAAAAAAAAAugIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAByAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -654,10 +654,13 @@ GameObject:
   m_Component:
   - component: {fileID: 632252974}
   - component: {fileID: 632252973}
-  - component: {fileID: 632252972}
+  - component: {fileID: 632252979}
   - component: {fileID: 632252971}
   - component: {fileID: 632252970}
+  - component: {fileID: 632252977}
+  - component: {fileID: 632252976}
   - component: {fileID: 632252975}
+  - component: {fileID: 632252978}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -711,27 +714,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.20885213}
   m_EdgeRadius: 0
---- !u!50 &632252972
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632252969}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!212 &632252973
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -792,7 +774,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632252969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.9, y: 5, z: 0}
+  m_LocalPosition: {x: 37.9, y: 7, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -808,9 +790,119 @@ MonoBehaviour:
   m_GameObject: {fileID: 632252969}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  target: {fileID: 479391500}
+--- !u!114 &632252976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632252969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+  radius: 0.3
+  height: 0.01
+  canMove: 1
+  maxSpeed: 2.25
+  gravity: {x: 0, y: 0, z: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 1
+  enableRotation: 0
+  autoRepath:
+    mode: 2
+    interval: 0.5
+    sensitivity: 10
+    maximumInterval: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 2.25
+  pickNextWaypointDist: 1
+  endReachedDistance: 1.75
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
+--- !u!114 &632252977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632252969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &632252978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632252969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f60e0a0da77da34408c6a69214c1d41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiPath: {fileID: 632252976}
+  idleSprites:
+  - {fileID: -138515552, guid: 66fd787b390d8fc4abb94f5f764af27d, type: 3}
+  - {fileID: 343040481, guid: 66fd787b390d8fc4abb94f5f764af27d, type: 3}
+  - {fileID: -403670618, guid: 66fd787b390d8fc4abb94f5f764af27d, type: 3}
+--- !u!50 &632252979
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632252969}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &986081741
 GameObject:
   m_ObjectHideFlags: 0
