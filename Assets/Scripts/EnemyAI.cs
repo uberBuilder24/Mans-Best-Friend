@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour {
     private SpriteRenderer spriteRend;
     private Animator anim;
     private float direction = 2f;
+    private float fireRate = 15f;
+    private float shootTimer = 0f;
 
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
@@ -16,6 +18,7 @@ public class EnemyAI : MonoBehaviour {
     void Update() {
         float movementX = aiPath.desiredVelocity.x * Time.deltaTime;
         float movementY = aiPath.desiredVelocity.y * Time.deltaTime;
+        shootTimer += Time.deltaTime;
 
         if (movementY > 0.01f) {
             direction = 0;
@@ -48,6 +51,11 @@ public class EnemyAI : MonoBehaviour {
         } else {
             anim.enabled = false;
             HandleIdleSprites();
+
+            if (shootTimer >= fireRate / 60) {
+                RaycastHit2D gunHit = Physics2D.Raycast(transform.position, (aiPath.destination - transform.position).normalized, 5f);
+                Debug.Log(gunHit.collider.gameObject.name);
+            }
         }
         
         transform.position += Vector3.right * movementX + Vector3.up * movementY;

@@ -18,6 +18,7 @@ public class CharacterSwitcher : MonoBehaviour {
                 person.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic; // Set person to kinematic to prevent pushing
                 dog.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; // Set dog to dynamic to allow collisions
             }
+            AstarPath.active.Scan();
             personEnabled = !personEnabled;
         }
     }
