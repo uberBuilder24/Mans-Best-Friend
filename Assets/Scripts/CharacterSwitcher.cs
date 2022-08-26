@@ -4,8 +4,9 @@ using Cinemachine;
 public class CharacterSwitcher : MonoBehaviour {
     [SerializeField] private GameObject person;
     [SerializeField] private GameObject dog;
+    [SerializeField] private Texture2D cursorSprite;
     [SerializeField] private CinemachineVirtualCamera virtualCam;
-    public static bool personEnabled = false;
+    public static bool personEnabled = true;
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
