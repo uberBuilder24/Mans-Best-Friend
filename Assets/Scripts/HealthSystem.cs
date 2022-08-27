@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class HealthSystem : MonoBehaviour {
     [SerializeField] private float startingHealth = 10f;
     [SerializeField] private float bulletDamage = 4f;
-    private float health;
+    public float health;
 
     void Awake() {
         health = startingHealth;
@@ -13,8 +13,10 @@ public class HealthSystem : MonoBehaviour {
     void Update() {
         if (health <= 0f) {
             if (gameObject.tag == "Player") {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                ScoreSystem.killCount = 0;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             } else {
+                ScoreSystem.killCount++;
                 Destroy(gameObject);
             }
         }

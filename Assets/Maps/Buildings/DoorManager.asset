@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: DoorManager
   m_EditorClassIdentifier: 
   level1Destinations:
+  - {x: 0, y: 0, z: 0}
   - {x: 23.65, y: 22.8, z: 0}
   - {x: 26.25, y: 14, z: 0}
   - {x: 35.2, y: 21, z: 0}
   - {x: 49.275, y: 22.8, z: 0}
   - {x: 49.9, y: 14, z: 0}
   - {x: 53.725, y: 18, z: 0}
-  level1Conditions: 000000000000000000000000000000000000000000000000
+  - {x: 0, y: 0, z: 0}
+  level1Conditions: 0000000000000000000000000000000000000000000000000000000000000000

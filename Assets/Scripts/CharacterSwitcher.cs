@@ -25,19 +25,23 @@ public class CharacterSwitcher : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
-            if (!personEnabled == true) {
-                virtualCam.m_Follow = person.transform;
-                person.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                dog.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                Cursor.SetCursor(aimingCursor, Vector3.zero, CursorMode.Auto);
-            } else {
-                virtualCam.m_Follow = dog.transform;
-                person.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                dog.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                Cursor.SetCursor(defaultCursor, Vector3.zero, CursorMode.Auto);
-            }
-            AstarPath.active.Scan();
-            personEnabled = !personEnabled;
+            SwitchCharacters();
         }
+    }
+
+    public void SwitchCharacters() {
+        if (!personEnabled == true) {
+            virtualCam.m_Follow = person.transform;
+            person.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            dog.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            Cursor.SetCursor(aimingCursor, Vector3.zero, CursorMode.Auto);
+        } else {
+            virtualCam.m_Follow = dog.transform;
+            person.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            dog.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            Cursor.SetCursor(defaultCursor, Vector3.zero, CursorMode.Auto);
+        }
+        AstarPath.active.Scan();
+        personEnabled = !personEnabled;
     }
 }

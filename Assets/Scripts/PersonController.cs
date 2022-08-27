@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PersonController : MonoBehaviour {
     [Header("Movement")]
@@ -6,6 +7,7 @@ public class PersonController : MonoBehaviour {
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
     private float movementSpeed;
     private SpriteRenderer spriteRend;
+    private HealthSystem healthSystem;
     private Animator anim;
     private float direction = 2f;
 
@@ -19,12 +21,16 @@ public class PersonController : MonoBehaviour {
     [SerializeField] private Transform dog;
     [SerializeField] private float dogRangeSpeed = 3.25f;
     [SerializeField] private float dogRangeFireRate = 3f;
+    [SerializeField] private float dogRangeRegenTime = 3f;
+    bool inDogRange;
 
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
+        healthSystem = GetComponent<HealthSystem>();
         anim = GetComponent<Animator>();
         movementSpeed = normalSpeed;
         fireRate = normalFireRate;
+        StartCoroutine(RegenHealth());
     }
 
     void Update() {
@@ -116,7 +122,7 @@ public class PersonController : MonoBehaviour {
     }
 
     void HandleDogRangeVars() {
-        bool inDogRange = Mathf.Abs(Vector2.Distance(transform.position, dog.position)) <= 2.5f;
+        inDogRange = Mathf.Abs(Vector2.Distance(transform.position, dog.position)) <= 2.5f;
         movementSpeed = inDogRange ? dogRangeSpeed : normalSpeed;
         fireRate = inDogRange ? dogRangeFireRate : dogRangeSpeed;
     }
@@ -134,6 +140,20 @@ public class PersonController : MonoBehaviour {
         } else if (direction == 3) {
             spriteRend.flipX = true;
             spriteRend.sprite = idleSprites[2];
+        }
+    }
+    
+    IEnumerator RegenHealth() {
+        while (true) {
+            if (healthSystem.health < 10 && inDogRange) {
+                healthSystem.health += 2;
+                if (healthSystem.health > 10) {
+                    healthSystem.health = 10;
+                }
+                yield return new WaitForSeconds(dogRangeRegenTime);
+            } else {
+                yield return null;
+            }
         }
     }
 }

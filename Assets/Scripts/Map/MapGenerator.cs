@@ -14,9 +14,9 @@ public class MapGenerator : MonoBehaviour {
     public ColourToPrefab[] buildingMappings;
     private int doorCount = 0;
 
-    [Header("Details")]
-    [SerializeField] private Texture2D detailMap;
-    public ColourToPrefab[] detailMappings;
+    [Header("Misc")]
+    [SerializeField] private Texture2D miscMap;
+    public ColourToPrefab[] miscMappings;
     
     void Awake() {
         GenerateMap();
@@ -34,6 +34,7 @@ public class MapGenerator : MonoBehaviour {
     void GenerateTile(int x, int y) {
         Color pixelColour = terrainMap.GetPixel(x, y);
         if (pixelColour.a == 0) { return; } // Transparent Pixel
+        Transform worldContainer = gameObject.transform.Find("World");
 
         foreach (ColourToPrefab terrainMapping in terrainMappings) {
             if (terrainMapping.colour.Equals(pixelColour)) {
@@ -47,8 +48,8 @@ public class MapGenerator : MonoBehaviour {
                 }
 
                 HandleBuildings(x, y);
-                HandleDetails(x, y);
-                Instantiate(terrainMapping.prefab, position, Quaternion.identity, transform);
+                HandleMisc(x, y);
+                Instantiate(terrainMapping.prefab, position, Quaternion.identity, worldContainer);
             }
         }
     }
@@ -56,6 +57,7 @@ public class MapGenerator : MonoBehaviour {
     void HandleBuildings(int x, int y) {
         Color pixelColour = buildingMap.GetPixel(x, y);
         if (pixelColour.a == 0) { return; } // Transparent Pixel
+        Transform buildingContainer = gameObject.transform.Find("Buildings");
 
         foreach (ColourToPrefab buildingMapping in buildingMappings) {
             if (buildingMapping.colour.Equals(pixelColour)) {
@@ -63,7 +65,7 @@ public class MapGenerator : MonoBehaviour {
                 position.x *= tileWidth / 100;
                 position.y *= tileHeight / 100 - 0.2f; // Subtract 0.2 because the vertical walls are 20 pixels taller
 
-                GameObject wall = Instantiate(buildingMapping.prefab, position, Quaternion.identity, transform);
+                GameObject wall = Instantiate(buildingMapping.prefab, position, Quaternion.identity, buildingContainer);
 
                 if (buildingMapping.prefab.name.Contains("Door")) {
                     wall.GetComponent<DoorHandler>().doorId = doorCount;
@@ -73,17 +75,18 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    void HandleDetails(int x, int y) {
-        Color pixelColour = detailMap.GetPixel(x, y);
+    void HandleMisc(int x, int y) {
+        Color pixelColour = miscMap.GetPixel(x, y);
         if (pixelColour.a == 0) { return; } // Transparent Pixel
+        Transform miscContainer = gameObject.transform.Find("Misc");
 
-        foreach (ColourToPrefab detailMapping in detailMappings) {
-            if (detailMapping.colour.Equals(pixelColour)) {
+        foreach (ColourToPrefab miscMapping in miscMappings) {
+            if (miscMapping.colour.Equals(pixelColour)) {
                 Vector2 position = new Vector2(x, y);
                 position.x *= tileWidth / 100;
                 position.y *= tileHeight / 100;
 
-                Instantiate(detailMapping.prefab, position, Quaternion.identity, transform);
+                Instantiate(miscMapping.prefab, position, Quaternion.identity, miscContainer);
             }
         }
     }
