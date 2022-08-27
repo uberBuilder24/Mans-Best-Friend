@@ -12,6 +12,7 @@ public class MapGenerator : MonoBehaviour {
     [Header("Buildings")]
     [SerializeField] private Texture2D buildingMap;
     public ColourToPrefab[] buildingMappings;
+    private int doorCount = 0;
 
     [Header("Details")]
     [SerializeField] private Texture2D detailMap;
@@ -62,7 +63,12 @@ public class MapGenerator : MonoBehaviour {
                 position.x *= tileWidth / 100;
                 position.y *= tileHeight / 100 - 0.2f; // Subtract 0.2 because the vertical walls are 20 pixels taller
 
-                Instantiate(buildingMapping.prefab, position, Quaternion.identity, transform);
+                GameObject wall = Instantiate(buildingMapping.prefab, position, Quaternion.identity, transform);
+
+                if (buildingMapping.prefab.name.Contains("Door")) {
+                    wall.GetComponent<DoorHandler>().doorId = doorCount;
+                    doorCount++;
+                }
             }
         }
     }

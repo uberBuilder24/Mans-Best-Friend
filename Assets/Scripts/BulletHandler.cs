@@ -21,7 +21,7 @@ public class BulletHandler : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (isClone) {
-            if (!collider.gameObject.name.Contains(transform.parent.name)) {
+            if (!collider.gameObject.name.Contains("Bullet") && !collider.gameObject.name.Contains(transform.parent.name)) {
                 Destroy(gameObject);
             }
         }

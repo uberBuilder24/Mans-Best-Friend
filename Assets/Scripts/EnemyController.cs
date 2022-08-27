@@ -3,10 +3,10 @@ using Pathfinding;
 
 public class EnemyController : MonoBehaviour {
     [Header("Movement")]
-    [SerializeField] private Transform target;
     [SerializeField] private GameObject alerted;
     [SerializeField] private Vector2 idlingDirection = new Vector2(0f, 1f);
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
+    private Transform target;
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
     private SpriteRenderer spriteRend;
@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour {
 
     [Header("Shooting")]
     [SerializeField] private float fireRate = 1f;
-    [SerializeField] private GameObject bullet;
+    private GameObject bullet;
     private float nextFireTime = 0f;
 
     private bool idleWallCollision;
@@ -26,6 +26,9 @@ public class EnemyController : MonoBehaviour {
         destinationSetter = GetComponent<AIDestinationSetter>();
         spriteRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        
+        target = GameObject.Find("Person").transform;
+        bullet = GameObject.Find("Bullet");
     }
 
     void Update() {
