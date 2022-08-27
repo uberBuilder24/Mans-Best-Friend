@@ -2,26 +2,37 @@ using UnityEngine;
 
 public class PersonController : MonoBehaviour {
     [Header("Movement")]
-    [SerializeField] private float movementSpeed = 2.25f;
+    [SerializeField] private float normalSpeed = 2.25f;
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
+    private float movementSpeed;
     private SpriteRenderer spriteRend;
     private Animator anim;
     private float direction = 2f;
 
     [Header("Shooting")]
-    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float normalFireRate = 1f;
     [SerializeField] private GameObject bullet;
+    private float fireRate;
     private float nextFireTime = 0f;
+
+    [Header("Dog Range")]
+    [SerializeField] private Transform dog;
+    [SerializeField] private float dogRangeSpeed = 3.25f;
+    [SerializeField] private float dogRangeFireRate = 3f;
 
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        movementSpeed = normalSpeed;
+        fireRate = normalFireRate;
     }
 
     void Update() {
         if (CharacterSwitcher.personEnabled == true) {
             float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+
+            HandleDogRangeVars();
 
             if (movementY > 0.01f) {
                 direction = 0;
@@ -55,7 +66,7 @@ public class PersonController : MonoBehaviour {
                 anim.enabled = false;
                 HandleIdleSprites();
 
-                if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime) {
+                if (Input.GetMouseButton(0) && Time.time >= nextFireTime) {
                     nextFireTime = Time.time + 1f / fireRate;
                     Vector3 aim = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Shoot(new Vector3(aim.x, aim.y, 0f));
@@ -102,6 +113,12 @@ public class PersonController : MonoBehaviour {
         }
 
         Instantiate(bullet, transform.position + bulletSpawn, Quaternion.Euler(0f, 0f, angle), transform);
+    }
+
+    void HandleDogRangeVars() {
+        bool inDogRange = Mathf.Abs(Vector2.Distance(transform.position, dog.position)) <= 2.5f;
+        movementSpeed = inDogRange ? dogRangeSpeed : normalSpeed;
+        fireRate = inDogRange ? dogRangeFireRate : dogRangeSpeed;
     }
 
     void HandleIdleSprites() {

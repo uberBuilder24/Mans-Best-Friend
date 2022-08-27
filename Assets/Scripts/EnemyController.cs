@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] private GameObject bullet;
     private float nextFireTime = 0f;
 
+    private bool idleWallCollision;
+
     void Start() {
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
@@ -27,14 +29,16 @@ public class EnemyController : MonoBehaviour {
     }
 
     void Update() {
+        idleWallCollision = false;
+
         float movementX;
         float movementY;
         if (knowsPlayer) {
             movementX = aiPath.desiredVelocity.x * Time.deltaTime;
             movementY = aiPath.desiredVelocity.y * Time.deltaTime;
         } else {
-            movementX = aiPath.maxSpeed * idlingDirection.x * Time.deltaTime;
-            movementY = aiPath.maxSpeed * idlingDirection.y * Time.deltaTime;
+            movementX = (aiPath.maxSpeed / 2) * idlingDirection.x * Time.deltaTime;
+            movementY = (aiPath.maxSpeed / 2) * idlingDirection.y * Time.deltaTime;
         }
 
         if (movementY > 0.01f) {
@@ -51,8 +55,9 @@ public class EnemyController : MonoBehaviour {
         }
 
         if (IsOnScreen() && CharacterSwitcher.personEnabled == true && knowsPlayer == false) {
-            alerted.SetActive(true);
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             nextFireTime = Time.time + 1f;
+            alerted.SetActive(true);
             knowsPlayer = true;
             destinationSetter.target = target;
         }
@@ -88,10 +93,10 @@ public class EnemyController : MonoBehaviour {
         transform.position += Vector3.right * movementX + Vector3.up * movementY;
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Trigger Entered!");
-        if (collider.gameObject.layer == 6 && knowsPlayer == false) {
-            idlingDirection *= -1f;
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.layer == 6 && knowsPlayer == false && idleWallCollision == false) {
+            idlingDirection = -idlingDirection;
+            idleWallCollision = true;
         }
     }
 
