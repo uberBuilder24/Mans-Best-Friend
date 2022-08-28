@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void StartGame() {
+        CharacterSwitcher.personEnabled = true;
         SceneManager.LoadScene(1);
     }
 

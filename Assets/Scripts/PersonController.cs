@@ -38,12 +38,12 @@ public class PersonController : MonoBehaviour {
     }
 
     void Update() {
+        HandleDogRangeVars();
+        healthBar.value = healthSystem.health;
+        
         if (CharacterSwitcher.personEnabled == true) {
             float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-            healthBar.value = healthSystem.health;
-
-            HandleDogRangeVars();
 
             if (movementY > 0.01f) {
                 direction = 0;
