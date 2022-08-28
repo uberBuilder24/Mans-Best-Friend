@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour {
     [SerializeField] private float startingHealth = 10f;
-    [SerializeField] private float bulletDamage = 4f;
+    [SerializeField] private float bulletDamage = 2f;
     public float health;
 
     void Awake() {

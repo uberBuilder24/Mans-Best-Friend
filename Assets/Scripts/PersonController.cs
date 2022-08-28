@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PersonController : MonoBehaviour {
@@ -7,7 +8,6 @@ public class PersonController : MonoBehaviour {
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
     private float movementSpeed;
     private SpriteRenderer spriteRend;
-    private HealthSystem healthSystem;
     private Animator anim;
     private float direction = 2f;
 
@@ -24,6 +24,10 @@ public class PersonController : MonoBehaviour {
     [SerializeField] private float dogRangeRegenTime = 3f;
     bool inDogRange;
 
+    [Header("Health")]
+    [SerializeField] private Slider healthBar;
+    private HealthSystem healthSystem;
+
     void Start() {
         spriteRend = GetComponent<SpriteRenderer>();
         healthSystem = GetComponent<HealthSystem>();
@@ -37,6 +41,7 @@ public class PersonController : MonoBehaviour {
         if (CharacterSwitcher.personEnabled == true) {
             float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+            healthBar.value = healthSystem.health;
 
             HandleDogRangeVars();
 

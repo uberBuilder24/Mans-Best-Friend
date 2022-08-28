@@ -276,7 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 10
-  bulletDamage: 4
+  bulletDamage: 2
+  health: 0
 --- !u!1 &7724418348666874654
 GameObject:
   m_ObjectHideFlags: 0

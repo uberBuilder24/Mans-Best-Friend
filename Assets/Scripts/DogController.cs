@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DogController : MonoBehaviour {
     [SerializeField] private float movementSpeed = 2.25f;
+    [SerializeField] private Slider healthBar;
     [SerializeField, Tooltip("Front, Back, Side")] private Sprite[] idleSprites;
+    private HealthSystem healthSystem;
     private SpriteRenderer spriteRend;
     private Animator anim;
     private float direction = 1f;
 
     void Start() {
+        healthSystem = GetComponent<HealthSystem>();
         spriteRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
@@ -16,6 +20,7 @@ public class DogController : MonoBehaviour {
         if (CharacterSwitcher.personEnabled == false) {
             float movementX = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+            healthBar.value = healthSystem.health;
 
             if (movementY > 0.01f) {
                 direction = 0;
